@@ -1,0 +1,72 @@
+body {
+    height: 100vh;
+    background: #f48c06; /* ULBI orange color */
+    background: -webkit-linear-gradient(to right, #f48c06, #ffa500); /* For older browsers */
+    background: linear-gradient(to right, #f48c06, #ffa500); /* Modern gradient from ULBI orange to a lighter orange */
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('../Gedung\ Rektorat.jpg') no-repeat center center fixed;
+    background-size: cover; /* Ensures the image covers the entire background */
+    height: 100vh;
+    margin: 0;
+    font-family: sans-serif;
+    background-blend-mode: overlay;
+}
+
+        /* Transparent form container */
+        .login-container {
+            background: rgba(255, 255, 255, 0.3);
+            /* White with 30% opacity */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            background: rgba(255, 255, 255, 0.8);
+            /* Slightly opaque white inputs */
+            color: #333;
+        }
+
+        .login-container input[type="submit"] {
+            background-color: #FF4500;
+            /* Orange for submit button */
+            color: white;
+            cursor: pointer;
+        }
+
+        .login-container input[type="submit"]:hover {
+            background-color: #FF6347;
+            /* Lighter orange on hover */
+        }
+
+        .login-container a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .login-container a:hover {
+            text-decoration: underline;
+        }
