@@ -11,6 +11,7 @@ form.addEventListener('submit', async function (event) {
 
     try {
         // Send POST request to API
+        //https://asia-southeast2-sistemakreditasi.cloudfunctions.net/sistemakreditasi
         const response = await axios.post('https://asia-southeast2-gis-project-401902.cloudfunctions.net/backend-ai/login', {
             username,
             password
