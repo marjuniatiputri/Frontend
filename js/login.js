@@ -1,30 +1,25 @@
-// Select the form element
-const form = document.getElementById('formlogin');
+document.getElementById('login-form').addEventListener('submit', async function (event) {
+    event.preventDefault(); // Prevent form submission
 
-// Add event listener to form submit
-form.addEventListener('submit', async function (event) {
-    event.preventDefault();
-
-    // Get username and password values
-    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
     try {
-        // Send POST request to API
-        //https://asia-southeast2-sistemakreditasi.cloudfunctions.net/sistemakreditasi
-        const response = await axios.post('https://asia-southeast2-gis-project-401902.cloudfunctions.net/backend-ai/login', {
-            username,
-            password
+        const response = await axios.post('https://asia-southeast2-sistemakreditasi.cloudfunctions.net/sistemakreditasi/login', {
+            email: email,
+            password: password
         });
 
-        // Handle successful response
-        const { status, token, message } = response.data;
-        if (status) {
-            // Set cookie with token
-            document.cookie = `user_login=${token}; path=/`;
+        let message;
 
-            // Set login flag in local storage
-            localStorage.setItem('isLoggedIn', 'true');
+        // Check if the response contains the expected data
+        if (response.data && response.data.status === 'success') {
+            // Extract token and store in cookies
+            const token = response.data.token;
+            document.cookie = `token=${token}; path=/;`;
+
+            // Success message with user info
+            message = `Login successful! Welcome, ${response.data.data.email}. Your role is ${response.data.data.role}.`;
 
             // Show SweetAlert success message with OK button
             await Swal.fire({
@@ -34,10 +29,15 @@ form.addEventListener('submit', async function (event) {
                 confirmButtonText: 'OK'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = 'chat.html';
+                    // Redirect to index.html
+                    window.location.href = 'https://sistemakreditasi.github.io/dashboard/';
                 }
             });
         } else {
+            // Error message if login fails
+            message = 'Login gagal. Silakan periksa kredensial Anda.';
+
+            // Show SweetAlert error message
             await Swal.fire({
                 icon: 'error',
                 title: 'Login Gagal!',
@@ -45,6 +45,7 @@ form.addEventListener('submit', async function (event) {
             });
         }
     } catch (error) {
+        // Show SweetAlert error for other failures
         console.error('Error during login:', error);
         await Swal.fire({
             icon: 'error',
@@ -53,6 +54,7 @@ form.addEventListener('submit', async function (event) {
         });
     }
 });
+
 
 // login.js
 
